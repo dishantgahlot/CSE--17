@@ -152,6 +152,15 @@ body {
   margin-top: 3px;
 }
 
+/* header icon animate*/
+
+.header:hover{
+  transform: scale(1.03)  ;
+  transition:  transform 0.3s  ease-in-out ;
+}
+
+
+
 /* Responsive */
 @media screen and (max-width: 900px) {
   .main-content {
