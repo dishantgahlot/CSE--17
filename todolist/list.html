@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Luxury Todo App</title>
+<style>
+  /* Animated Gradient Background */
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #7f00ff, #e100ff, #ff512f, #f09819);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  @keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  /* Glassmorphic Container */
+  .container {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    padding: 30px;
+    width: 420px;
+    color: white;
+    animation: fadeIn 0.8s ease;
+  }
+
+  /* Heading */
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 1.9rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  /* Input Area */
+  .input-area {
+    display: flex;
+    gap: 8px;
+  }
+  #input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.2);
+    color: white;
+  }
+  #input::placeholder {
+    color: rgba(255,255,255,0.7);
+  }
+  #btn1 {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  #btn1:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  /* Task List */
+  #list {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+  #list::-webkit-scrollbar {
+    width: 6px;
+  }
+  #list::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+  }
+
+  /* Task Item */
+  .task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.15);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    animation: slideIn 0.3s ease;
+  }
+
+  /* Custom Checkbox */
+  .check {
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    border: 2px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .check:checked {
+    background: #00ff88;
+    border-color: #00ff88;
+  }
+  .check:checked::after {
+    content: "✔";
+    position: absolute;
+    left: 2px;
+    top: -2px;
+    color: black;
+    font-size: 16px;
+  }
+
+  /* Task Text */
+  .task-text {
+    flex: 1;
+    font-size: 1rem;
+    transition: color 0.3s, text-decoration 0.3s;
+  }
+  .completed {
+    text-decoration: line-through;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* Delete Button */
+  .delete-btn {
+    background: rgba(255,0,0,0.7);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .delete-btn:hover {
+    background: rgba(255,0,0,1);
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  @keyframes slideIn {
+    from {opacity: 0; transform: translateX(-20px);}
+    to {opacity: 1; transform: translateX(0);}
+  }
+  @keyframes slideOut {
+    from {opacity: 1; transform: translateX(0);}
+    to {opacity: 0; transform: translateX(50px);}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="h1">Your Tasks</h1>
+    <div class="input-area">
+      <input id="input" placeholder="Add a task..." />
+      <button id="btn1">+</button>
+    </div>
+    <ul id="list"></ul>
+  </div>
+
+<script>
+  const input = document.querySelector('#input');
+  const btn = document.querySelector('#btn1');
+  const list = document.querySelector('#list');
+  const heading = document.querySelector('#h1');
+
+  function getCount(){
+    return parseInt(localStorage.getItem('taskCount')) || 0;
+  }
+
+  function saveTask(key, text){
+    localStorage.setItem(String(key), text);
+  }
+
+  function loadTasksToDOM(){
+    list.innerHTML = '';
+    const count = getCount();
+    let visibleTasks = 0;
+
+    for (let i = 1; i <= count; i++) {
+      const t = localStorage.getItem(String(i));
+      if (!t) continue;
+      visibleTasks++;
+      const li = document.createElement('li');
+      li.className = 'task';
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.className = 'check';
+
+      const span = document.createElement('span');
+      span.className = 'task-text';
+      span.textContent = t;
+
+      checkbox.addEventListener('change', () => {
+        span.classList.toggle('completed', checkbox.checked);
+      });
+
+      const del = document.createElement('button');
+      del.textContent = '🗑';
+      del.className = 'delete-btn';
+      del.addEventListener('click', () => {
+        li.style.animation = 'slideOut 0.3s forwards';
+        setTimeout(() => {
+          localStorage.removeItem(String(i));
+          loadTasksToDOM();
+        }, 300);
+      });
+
+      li.appendChild(checkbox);
+      li.appendChild(span);
+      li.appendChild(del);
+      list.appendChild(li);
+    }
+
+    heading.innerText = visibleTasks === 0 ? 'No tasks yet' : 'Your Tasks';
+  }
+
+  btn.addEventListener('click', () => {
+    const task = input.value.trim();
+    if (!task) {
+      alert('Enter the task...');
+      return;
+    }
+    let count = getCount();
+    count++;
+    localStorage.setItem('taskCount', String(count));
+    saveTask(count, task);
+    input.value = '';
+    loadTasksToDOM();
+  });
+
+  loadTasksToDOM();
+</script>
+</body>
+</html>
