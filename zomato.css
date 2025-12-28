@@ -31,7 +31,7 @@ body {
 
 
 .d2 {
-    height: 50px;
+    height: 55px;
     width: 700px;
     border-radius: 10px;
 
@@ -111,13 +111,141 @@ body {
 
 #btn1:hover {
     color: #201f1f;
+    cursor: pointer;
    
 }
 
 
 #btn2:hover {
     color:#201f1f;
+    cursor: pointer;
+   
+}
+
+.body1{
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+    margin-left: 200px;
+}
+
+.body1 div{
+    font-size: smaller;
+    color: #7a7a7a;
+}
+
+.body1 span{
+    color: #a5a4a4;
+}
+
+.di1:hover{
+    color: #ff4f5a;
+    cursor: pointer;
+}
+
+.di2:hover{
+    color: #ff4f5a;
+    cursor: pointer;
+}
+
+.di3:hover{
+    
+    cursor:default;
    
 }
 
 
+.body2{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    margin-top: 35px;
+    margin-left: 200px;
+    
+}
+.fil{
+    height: 40px;
+    width: 90px;
+    
+    border: 1px solid rgb(221, 216, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+     box-shadow:
+        0 1px 2px rgba(0,0,0,0.08),
+        0 4px 12px rgba(0,0,0,0.12);
+
+        color: #a5a4a4;
+
+}
+
+.veg{
+    height: 40px;
+    width: 90px;
+   
+    border: 1px solid rgb(220, 219, 219);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    
+     box-shadow:
+        0 1px 2px rgba(0,0,0,0.08),
+        0 4px 12px rgba(0,0,0,0.12);
+    color: #a5a4a4;
+    
+    
+    
+}
+
+.cous{
+    height: 40px;
+    width: 90px;
+   
+    border: 1px solid rgb(221, 214, 214);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    
+     box-shadow:
+        0 1px 2px rgba(0,0,0,0.08),
+        0 4px 12px rgba(0,0,0,0.12);
+
+    
+        color: #a5a4a4;
+    
+}
+
+.body2 div:hover{
+
+    background-color: #f6f5f5;
+    color: #8d8c8c;
+    cursor: pointer;
+
+}
+
+.body3{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 40px;
+    background-color: #f0efef;
+    padding-top: 50px;
+    
+}
+
+.ins{
+    
+    margin-left: 200px;
+    font-size: xx-large;
+    
+    font-weight: 600;
+}
