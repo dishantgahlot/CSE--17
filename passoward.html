@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Centered Login Form</title>
+  <style>
+
+        /* reset box sizing so padding doesn't break width calculations */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #eaf2ff 0%, #f7f9ff 100%);
+    }
+
+    /* center .form in the viewport */
+    body {
+      display: flex;
+      justify-content: center; /* horizontal center */
+      align-items: center;     /* vertical center */
+    }
+
+    /* form card */
+    .form {
+      height: 40%;
+      width: 450px;
+      background: #ffffff;
+      padding: 38px 34px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(20, 30, 60, 0.08);
+      text-align: left;
+    }
+
+    .form h1 {
+      margin: 0 0 16px 0;
+      font-size: 20px;
+      text-align: center;
+      color: #222;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .input-group {
+      margin-bottom: 14px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d6dbe8;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+      padding: 14px 18px;
+      margin-top: 40px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    input[type="submit"] { background: #286ef0; color: #fff; }
+    input[type="reset"]  { background: #e6eaf8; color: #0a2b6f; }
+
+    /* small screens */
+    @media (max-width: 380px) {
+      .form { width: 92%; padding: 20px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="form">
+    <h1>LOGIN FORM</h1>
+
+    <form action="#" method="post" autocomplete="off">
+      <div class="input-group">
+        <label for="userid">User ID</label>
+        <input id="userid" name="userid" type="text" placeholder="Enter your user name" />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Enter your password" />
+      </div>
+
+      <div class="actions">
+        <input type="submit" value="Login" />
+        <input type="reset" value="Reset" />
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

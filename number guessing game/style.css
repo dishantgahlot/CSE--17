@@ -1,0 +1,77 @@
+body{
+    padding: 0%;
+    margin: 0%;
+    background-color :thistle;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#mainDiv{
+     width: 60vh;
+     height: 60vh;
+     background-color: white;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border-radius: 50px;
+     margin-top:9% ;
+     box-shadow: 60px;
+  
+}
+
+#div2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+      
+}
+#result{
+    
+    text-align: center;
+  visibility: hidden;
+      
+
+}
+
+#play{
+
+    margin-top: 70px;
+    border-radius: 25px;
+    font-size: large;
+    background-color: red;
+    font-style: bold;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+
+    
+    
+}
+
+#condition{
+    text-align: center;
+    visibility: hidden;
+}
+
+#heading4{
+    visibility: hidden;
+    text-align: center;
+}
+
+
+
+#Inputnum{
+   width:55vh;
+   height: 40px;
+   border-radius: 10px;
+   font-size: large;
+   text-align: center;
+}
+    
+     
+    
+
+
